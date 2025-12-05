@@ -4,12 +4,26 @@ using router.DTOs;
 using router.Models;
 using router.Services;
 using System.IdentityModel.Tokens.Jwt;
+using System.Runtime.CompilerServices;
 using System.Security.Claims;
 
 namespace router.Endpoints;
 
 public static class AuthEndpoints
 {
+
+public static void MapAuthEndpoint (this IEndpointRouteBuilder)
+    {
+        var group = app.MapGroup("/api/auth"){
+             group.MapPost("/signup", async (
+                UserManager<ApplicationUser> UserManager, 
+                ITokenService tokenService, 
+                SignUpDto req) =>
+             {
+                 
+             })
+        }
+    }
     public static void MapAuthEndpoints(this IEndpointRouteBuilder app)
     {
         var group = app.MapGroup("/api/auth");
@@ -26,7 +40,7 @@ public static class AuthEndpoints
             {
                 Email = req.Email,
                 UserName = req.Email,
-                DisplayName = req.DisplayName
+                DisplayName = req.DisplayName,
             };
 
             var result = await userManager.CreateAsync(user, req.Password);
