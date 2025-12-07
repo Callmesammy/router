@@ -12,18 +12,6 @@ namespace router.Endpoints;
 public static class AuthEndpoints
 {
 
-public static void MapAuthEndpoint (this IEndpointRouteBuilder)
-    {
-        var group = app.MapGroup("/api/auth"){
-             group.MapPost("/signup", async (
-                UserManager<ApplicationUser> UserManager, 
-                ITokenService tokenService, 
-                SignUpDto req) =>
-             {
-                 
-             })
-        }
-    }
     public static void MapAuthEndpoints(this IEndpointRouteBuilder app)
     {
         var group = app.MapGroup("/api/auth");
